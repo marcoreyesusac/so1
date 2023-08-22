@@ -1,0 +1,10 @@
+FROM mysql:latest
+
+# Create the music database and table
+RUN mysql -uroot -proot -e "CREATE DATABASE music;"
+RUN mysql -uroot -proot music -e "CREATE TABLE music (
+  title VARCHAR(255) NOT NULL,
+  artist VARCHAR(255) NOT NULL,
+  year INT NOT NULL,
+  genre VARCHAR(255) NOT NULL
+);"

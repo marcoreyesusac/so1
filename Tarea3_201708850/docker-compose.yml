@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql
+    restart: always
+    volumes:
+      - ./data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+
+  golang-api:
+    image: golang-api
+    container_name: golang-api
+    restart: always
+    depends_on:
+      - mysql
+    ports:
+      - 8080:8080
+
+  react-server:
+    image: react-server
+    container_name: react-server
+    restart: always
+    depends_on:
+      - mysql
+      - golang-api
+    ports:
+      - 3000:3000
