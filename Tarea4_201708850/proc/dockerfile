@@ -1,0 +1,11 @@
+FROM debian:latest
+
+RUN apt-get update && apt-get install -y gcc
+
+COPY ram_module.c /ram_201708850/
+
+WORKDIR /ram_201708850
+
+RUN gcc -o ram_201708850 ram_201708850.c
+
+CMD ./ram_201708850
